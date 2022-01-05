@@ -13,4 +13,10 @@ public class DocumentRepository {
     public List<Document> findAll(){
         return entityManager.createQuery ("from Document", Document.class).getResultList ();
     }
+
+    public void saveDocument(Document document) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(document);
+        entityManager.getTransaction().commit();
+    }
 }

@@ -14,11 +14,11 @@ public class Passanger {
     private String name;
     private String surname;
 
-    @OneToMany
-    @JoinTable(
-          name = "passanger_ticket",
-          joinColumns = @JoinColumn(name = "passanger_id"),
-          inverseJoinColumns = @JoinColumn(name = "ticket_id")
-    )
-    private Set<Ticket> tickets;
+//    @OneToMany
+//    @JoinTable(
+//          name = "passanger_ticket",
+//          joinColumns = @JoinColumn(name = "passanger_id"),
+//          inverseJoinColumns = @JoinColumn(name = "ticket_id")
+//    )
+//    private Set<Ticket> tickets;
 }

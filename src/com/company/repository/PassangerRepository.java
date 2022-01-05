@@ -12,6 +12,12 @@ public class PassangerRepository {
         this.entityManager = entityManager;
     }
     public List<Passanger> findAll(){
-        return entityManager.createQuery ("from Passanger", Passanger.class).getResultList ();
+        return entityManager.createQuery ("from Passanger",
+                Passanger.class).getResultList ();
+    }
+    public void savePassanger(Passanger passanger) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(passanger);
+        entityManager.getTransaction().commit();
     }
 }
