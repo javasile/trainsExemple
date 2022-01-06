@@ -15,4 +15,10 @@ public class TrainRepository {
     public List<Train> findAll(){
         return entityManager.createQuery ("from Train", Train.class).getResultList ();
     }
+
+    public void saveTrain(Train train){
+        entityManager.getTransaction ().begin ();
+        entityManager.persist (train);
+        entityManager.getTransaction ().commit ();
+    }
 }

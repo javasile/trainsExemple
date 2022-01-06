@@ -15,4 +15,10 @@ public class ScheduleRepository {
         return entityManager.createQuery ("from Schedule", Schedule.class).getResultList ();
     }
 
+    public void saveSchedule (Schedule schedule){
+        entityManager.getTransaction ().begin ();
+        entityManager.persist (schedule);
+        entityManager.getTransaction ().commit ();
+    }
+
 }

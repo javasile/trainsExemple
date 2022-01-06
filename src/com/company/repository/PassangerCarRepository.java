@@ -15,4 +15,9 @@ public class PassangerCarRepository {
     public List<PassangerCar> findAll(){
         return entityManager.createQuery ("from PassangerCar", PassangerCar.class).getResultList ();
     }
+    public void savePassangerCar(PassangerCar passangerCar){
+        entityManager.getTransaction ().begin ();
+        entityManager.persist (passangerCar);
+        entityManager.getTransaction ().commit ();
+    }
 }

@@ -1,6 +1,7 @@
 package com.company.repository;
 
 import com.company.model.Company;
+import com.company.model.Passanger;
 
 import javax.persistence.EntityManager;
 import java.awt.*;
@@ -13,13 +14,14 @@ public class CompanyRepository {
     public CompanyRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-//    public List<Company>insert(){
-//        return entityManager.createNamedQuery ("to Company", Menu.class).getResultList ();
-//    }
 
     public List<Company> findAll(){
         return entityManager.createQuery ("from Company", Company.class).getResultList ();
     }
-
+    public void saveCompany(Company company) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(company);
+        entityManager.getTransaction().commit();
+    }
 
 }

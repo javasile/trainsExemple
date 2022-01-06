@@ -15,4 +15,9 @@ public class TrainStationRepository {
     public List<TrainStation> findAll(){
         return entityManager.createQuery ("from TrainStation", TrainStation.class).getResultList ();
     }
+    public void saveTrainStation(TrainStation trainStation){
+        entityManager.getTransaction ().begin ();
+        entityManager.persist (trainStation);
+        entityManager.getTransaction ().commit ();
+    }
 }
