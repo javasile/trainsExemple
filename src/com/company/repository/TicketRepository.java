@@ -14,4 +14,10 @@ public class TicketRepository {
     public List<Ticket> findAll(){
         return entityManager.createQuery ("from Ticket", Ticket.class).getResultList ();
     }
+
+    public void saveTicket(Ticket ticket){
+        entityManager.getTransaction ().begin ();
+        entityManager.persist (ticket);
+        entityManager.getTransaction ().commit ();
+    }
 }

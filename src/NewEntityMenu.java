@@ -152,6 +152,7 @@ public class NewEntityMenu {
   public static void ScheduleMenu(){
 
       Scanner stringScan = new Scanner (System.in);
+      Scanner numberScan = new Scanner (System.in);
 
       ScheduleRepository scheduleRepository = new ScheduleRepository (entityManager);
       Schedule schedule = new Schedule ();
@@ -160,9 +161,24 @@ public class NewEntityMenu {
       System.out.print ("Insert Schedule day code: ");
       schedule.setCode (stringScan.nextLine ());
 
-     DateTimeFormatter formatTime = DateTimeFormatter.ofPattern ("HH:mm:ss");
-      System.out.print ("Insert Local time of arriving train : ");
-//      schedule.setArrival (formatTime.LocalTime.parse (stringScan.nextLine ()));
+      System.out.print ("Insert next hore of arriving train: ");
+      int hours = numberScan.nextInt ();
+      System.out.print ("Insert next minute of arriving train: ");
+      int minute = numberScan.nextInt ();
+      LocalTime localTrain = LocalTime.now ();
+      LocalTime arrivalTrain = localTrain.plusHours (hours).plusMinutes (minute);
+      schedule.setArrivalTime (arrivalTrain);
+      schedule.setDepartureTime (arrivalTrain.plusMinutes (5));
+
+    scheduleRepository.saveSchedule (schedule);
+  }
+
+  public static void TicketMenu(){
+
+        TicketRepository ticketRepository = new TicketRepository (entityManager);
+        Ticket ticket = new Ticket ();
+        ticket.setId (UUID.randomUUID ());
+        ticketRepository.saveTicket (ticket);
 
   }
 
